@@ -1,0 +1,38 @@
+---
+const nav = [
+  { href: '/', label: 'Home' },
+  { href: '/packs', label: 'Packs' },
+  { href: '/about', label: 'About' },
+];
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+---
+<header class="relative border-b border-navy/10 bg-white/80 backdrop-blur sticky top-0 z-10">
+  <!-- Subtle accent under the brand mark only — pixel-budget appropriate for sticky bar -->
+  <div class="pointer-events-none absolute inset-0 overflow-hidden -z-0">
+    <div class="absolute -top-12 left-0 w-[300px] h-[120px] rounded-full opacity-30 blur-[60px]"
+         style="background: radial-gradient(ellipse, #F4842F 0%, transparent 70%);"></div>
+  </div>
+  <!-- Glow line at bottom — replaces the plain border with a faint colored shine -->
+  <div class="pointer-events-none absolute bottom-0 left-0 right-0 h-px"
+       style="background: linear-gradient(90deg, transparent 0%, rgba(244,132,47,0.3) 30%, rgba(26,35,50,0.15) 70%, transparent 100%);"></div>
+
+  <div class="relative max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+    <a href="/" class="flex items-center gap-2 font-semibold tracking-tight text-lg">
+      <img src="/logo.svg" alt="e-ComGen Design logo" width="28" height="28" />
+      e-ComGen<span class="text-orange"> Design</span>
+    </a>
+    <nav class="flex gap-6 text-sm">
+      {nav.map(({ href, label }) => (
+        <a
+          href={href}
+          class:list={[
+            'hover:text-orange transition-colors',
+            (path === href || (href !== '/' && path.startsWith(href))) && 'text-orange',
+          ]}
+        >
+          {label}
+        </a>
+      ))}
+    </nav>
+  </div>
+</header>

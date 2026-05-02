@@ -1,0 +1,91 @@
+---
+interface Variant { name: string; when_to_use: string }
+interface Props {
+  variants: Variant[];
+  icons_dir: string;
+  icons_ext?: 'png' | 'svg';
+  sample_icon: string;
+}
+const { variants, icons_dir, icons_ext = 'png', sample_icon } = Astro.props;
+
+const single_variant = variants.length <= 1;
+
+const VARIANT_SUBDIR: Record<string, string> = {
+  'mono-black': '01-mono-black',
+  'mono-navy':  '02-mono-navy',
+  'mono-grey':  '03-mono-grey',
+  'editable':   '04-editable',
+};
+
+// Per-variant card style: backgrounds chosen so each mono color shows well.
+// Black icon on light bg, white-ish bg for navy, grey on tinted, orange on dark.
+const VARIANT_STYLE: Record<string, { bg: string; label_bg: string; label_color: string }> = {
+  'mono-black': {
+    bg: 'bg-white',
+    label_bg: 'bg-black',
+    label_color: 'text-white',
+  },
+  'mono-navy': {
+    bg: 'bg-bg',
+    label_bg: 'bg-navy',
+    label_color: 'text-white',
+  },
+  'mono-grey': {
+    bg: 'bg-white',
+    label_bg: 'bg-navy/40',
+    label_color: 'text-white',
+  },
+  'editable': {
+    // Editable variant ON DARK background to demonstrate the "themeable" idea —
+    // shows the same icon glowing orange like a hover/dark-mode effect.
+    bg: 'bg-navy',
+    label_bg: 'bg-orange',
+    label_color: 'text-navy',
+  },
+};
+---
+{!single_variant && (
+<section class="max-w-5xl mx-auto px-6 py-14">
+  <h2 class="text-2xl font-semibold tracking-tight mb-2">{variants.length} color variants</h2>
+  <p class="text-navy/60 mb-8 text-sm">Same shapes, four palettes. The <code class="bg-bg px-1.5 py-0.5 rounded text-xs">editable</code> variant uses CSS <code class="bg-bg px-1.5 py-0.5 rounded text-xs">currentColor</code> — recolor with one CSS rule.</p>
+
+  <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+    {variants.map(({ name, when_to_use }) => {
+      const subdir = VARIANT_SUBDIR[name] ?? name;
+      const style = VARIANT_STYLE[name] ?? VARIANT_STYLE['mono-navy'];
+      return (
+        <div class="border border-navy/10 rounded-xl overflow-hidden bg-white flex flex-col">
+          <div class={`aspect-square flex items-center justify-center ${style.bg} relative`}>
+            <img
+              src={`${icons_dir}/${subdir}/${sample_icon}.${icons_ext}`}
+              alt={`${name} variant preview`}
+              class="w-20 h-20 relative z-10"
+              loading="lazy"
+              draggable={false}
+              oncontextmenu="return false"
+            />
+            <div class={`absolute top-3 left-3 text-[10px] uppercase tracking-wider font-bold px-2 py-0.5 rounded ${style.label_bg} ${style.label_color}`}>
+              {name}
+            </div>
+          </div>
+          <div class="p-4 flex-1">
+            <p class="text-sm text-navy/80 leading-snug">{when_to_use}</p>
+          </div>
+        </div>
+      );
+    })}
+  </div>
+
+  <details class="mt-8 group">
+    <summary class="cursor-pointer text-sm font-medium text-orange hover:underline list-none flex items-center gap-2">
+      <span class="group-open:rotate-90 transition-transform inline-block">›</span>
+      How the editable variant works (1-line CSS)
+    </summary>
+    <pre class="mt-3 bg-navy text-white text-xs p-4 rounded-lg overflow-x-auto"><code>{`<style>
+  .icon { color: #1A2332; width: 24px; height: 24px; }
+  .icon:hover { color: #F4842F; }
+</style>
+<img src="04-editable/${sample_icon}.svg" class="icon" />`}</code></pre>
+  </details>
+</section>
+)}

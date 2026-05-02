@@ -1,0 +1,54 @@
+---
+/**
+ * JSON-LD Product schema for pack landing pages.
+ * Tells Google this page is a sellable digital product with images.
+ * Triggers rich snippets in SERP + boosts Google Images discovery.
+ */
+interface Props {
+  title: string;
+  description: string;
+  hero_image: string;
+  inventory_grids: string[];
+  count: number;
+  price_usd: number;
+  is_free: boolean;
+  gumroad_url: string;
+  url: string;       // canonical absolute URL
+  slug: string;
+}
+const {
+  title, description, hero_image, inventory_grids,
+  count, price_usd, is_free, gumroad_url, url, slug,
+} = Astro.props;
+
+const site = Astro.site?.toString().replace(/\/$/, '') ?? 'https://e-comgen.site';
+const abs = (rel: string) => rel.startsWith('http') ? rel : `${site}${rel}`;
+
+const all_images = [abs(hero_image), ...inventory_grids.map(abs)];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  name: title,
+  description,
+  image: all_images,
+  url,
+  sku: slug,
+  brand: { "@type": "Brand", name: "e-ComGen Design" },
+  category: "Design Assets > Icons",
+  offers: {
+    "@type": "Offer",
+    url: gumroad_url,
+    priceCurrency: "USD",
+    price: is_free ? "0.00" : price_usd.toFixed(2),
+    availability: "https://schema.org/InStock",
+    seller: { "@type": "Organization", name: "e-ComGen Design" },
+  },
+  additionalProperty: [
+    { "@type": "PropertyValue", name: "Icon count", value: count.toString() },
+    { "@type": "PropertyValue", name: "Format", value: "SVG" },
+    { "@type": "PropertyValue", name: "License", value: "Commercial, no attribution" },
+  ],
+};
+---
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

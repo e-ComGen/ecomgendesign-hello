@@ -1,0 +1,48 @@
+---
+interface Icon { name: string; label: string }
+interface Props {
+  icons: Icon[];
+  icons_dir: string;
+  icons_ext?: 'png' | 'svg';
+  default_variant?: string;
+  title?: string;
+  category?: string;  // for SEO alt context
+}
+const {
+  icons,
+  icons_dir,
+  icons_ext = 'png',
+  default_variant,
+  title = "All icons",
+  category = '',
+} = Astro.props;
+
+// If default_variant provided, paths look like /thumbs/02-mono-navy/broccoli.png
+// Otherwise flat: /thumbs/broccoli.png
+const variant_path = default_variant ? `/${default_variant}` : '';
+---
+<section class="max-w-5xl mx-auto px-6 py-14">
+  <h2 class="text-2xl font-semibold tracking-tight mb-2">{title}</h2>
+  <p class="text-navy/60 mb-8 text-sm">PNG previews shown. The actual SVG vectors come with the pack.</p>
+
+  <div class="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-7 gap-3">
+    {icons.map(({ name, label }) => (
+      <div
+        class="group flex flex-col items-center gap-1.5 p-3 rounded-lg border border-navy/10 bg-white"
+        title={label}
+      >
+        <img
+          src={`${icons_dir}${variant_path}/${name}.${icons_ext}`}
+          alt={`${label} SVG icon${category ? ' — ' + category : ''}`}
+          class="w-10 h-10 group-hover:scale-110 transition-transform"
+          loading="lazy"
+          draggable={false}
+          oncontextmenu="return false"
+          width="80"
+          height="80"
+        />
+        <span class="text-[10px] text-navy/60 truncate w-full text-center">{label}</span>
+      </div>
+    ))}
+  </div>
+</section>

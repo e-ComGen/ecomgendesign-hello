@@ -1,0 +1,67 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import OrgSchema from '../components/OrgSchema.astro';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  og_image?: string;        // absolute or root-relative path; defaults to /og-default.png
+  og_type?: 'website' | 'article' | 'product';
+}
+const {
+  title,
+  description = 'SVG asset packs for designers and developers — icons, illustrations, UI elements. Editable, infinitely scalable, commercial license.',
+  og_image = '/og-default.png',
+  og_type = 'website',
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site).toString();
+const og_image_abs = og_image.startsWith('http')
+  ? og_image
+  : new URL(og_image, Astro.site).toString();
+---
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={canonical} />
+    <link rel="preconnect" href="https://rsms.me/" />
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <!-- Open Graph (Facebook, LinkedIn, Pinterest, generic) -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:type" content={og_type} />
+    <meta property="og:image" content={og_image_abs} />
+    <meta property="og:image:width" content="1280" />
+    <meta property="og:image:height" content="720" />
+    <meta property="og:site_name" content="e-ComGen Design" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={og_image_abs} />
+
+    <!-- Pinterest gets help from og:image but also respects: -->
+    <meta name="pinterest:description" content={description} />
+
+    <meta name="generator" content={Astro.generator} />
+    <OrgSchema />
+    <slot name="head" />
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <Header />
+    <main class="flex-1">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

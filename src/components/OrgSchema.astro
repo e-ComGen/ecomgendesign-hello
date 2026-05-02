@@ -1,0 +1,36 @@
+---
+/**
+ * Organization JSON-LD — emitted on every page (head slot).
+ * Tells Google + LLMs (ChatGPT/Perplexity/Claude) what brand is behind the site.
+ * Used as authoritative entity facts for AI Overviews + brand SERP.
+ */
+const site = Astro.site?.toString().replace(/\/$/, '') ?? 'https://e-comgen.site';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "e-ComGen Design",
+  alternateName: ["e-comgen", "ecomgen design", "ecomgen"],
+  url: site,
+  logo: `${site}/logo.svg`,
+  description: "Designer-curated SVG asset packs for product designers and developers — icons, illustrations, UI elements. Editable, infinitely scalable, commercial license.",
+  sameAs: [
+    "https://ecomgendesign.gumroad.com",
+    "https://github.com/e-ComGen",
+  ],
+  knowsAbout: [
+    "SVG icons", "Vector icons", "Icon design", "UI design assets",
+    "Figma assets", "Webflow assets", "React icons", "Design system",
+    "Commercial license design assets",
+  ],
+  makesOffer: {
+    "@type": "Offer",
+    itemOffered: {
+      "@type": "Product",
+      name: "SVG icon packs",
+      category: "Digital design assets",
+    },
+  },
+};
+---
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

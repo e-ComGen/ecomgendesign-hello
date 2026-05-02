@@ -1,0 +1,126 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import PackHero from '../../components/PackHero.astro';
+import ProductSchema from '../../components/ProductSchema.astro';
+import FreeSampler from '../../components/FreeSampler.astro';
+import AudienceSection from '../../components/AudienceSection.astro';
+import IconGrid from '../../components/IconGrid.astro';
+import VariantsExplainer from '../../components/VariantsExplainer.astro';
+import TopPicks from '../../components/TopPicks.astro';
+import UseCases from '../../components/UseCases.astro';
+import InventoryGallery from '../../components/InventoryGallery.astro';
+import BuyCTA from '../../components/BuyCTA.astro';
+import FAQ from '../../components/FAQ.astro';
+import RelatedPacks from '../../components/RelatedPacks.astro';
+
+export async function getStaticPaths() {
+  const packs = await getCollection('packs', ({ data }) => !data.draft);
+  return packs.map((pack) => ({
+    params: { slug: pack.slug },
+    props: { pack },
+  }));
+}
+
+interface Props { pack: CollectionEntry<'packs'> }
+const { pack } = Astro.props;
+const { Content } = await pack.render();
+const d = pack.data;
+const sample_icon = d.top_picks[0]?.icon ?? d.icons[0]?.name ?? '';
+const canonical_url = new URL(Astro.url.pathname, Astro.site).toString();
+---
+<Base title={d.title} description={d.description} og_image={d.hero_image} og_type="product">
+  <ProductSchema
+    slot="head"
+    title={d.title}
+    description={d.description}
+    hero_image={d.hero_image}
+    inventory_grids={d.inventory_grids}
+    count={d.count}
+    price_usd={d.price_usd}
+    is_free={d.is_free}
+    gumroad_url={d.gumroad_url}
+    url={canonical_url}
+    slug={pack.slug}
+  />
+  <PackHero
+    title={d.title}
+    description={d.description}
+    hero_image={d.hero_image}
+    count={d.count}
+    variants={d.variants}
+    total_files={d.total_files}
+    price_usd={d.price_usd}
+    gumroad_url={d.gumroad_url}
+    github_url={d.github_url}
+    free_count={d.is_free ? 0 : d.free_picks.length}
+    is_free={d.is_free}
+  />
+
+  {!d.is_free && d.free_picks.length === 4 && (
+    <FreeSampler
+      free_picks={d.free_picks}
+      icons={d.icons}
+      pack_slug={pack.slug}
+      default_variant={d.default_variant}
+      icons_dir={d.icons_dir}
+      icons_ext={d.icons_ext}
+    />
+  )}
+
+  <article class="max-w-3xl mx-auto px-6 pt-12 prose prose-navy text-navy/80 leading-relaxed">
+    <Content />
+  </article>
+
+  <AudienceSection audience={d.audience} />
+
+  <IconGrid
+    icons={d.icons}
+    icons_dir={d.icons_dir}
+    icons_ext={d.icons_ext}
+    default_variant={d.default_variant}
+    title={`All ${d.count} icons`}
+    category={d.category}
+  />
+
+  <BuyCTA
+    variant="inline"
+    price_usd={d.price_usd}
+    count={d.count}
+    total_files={d.total_files}
+    gumroad_url={d.gumroad_url}
+    is_free={d.is_free}
+  />
+
+  <VariantsExplainer
+    variants={d.variants_explainer}
+    icons_dir={d.icons_dir}
+    icons_ext={d.icons_ext}
+    sample_icon={sample_icon}
+  />
+
+  <TopPicks
+    picks={d.top_picks}
+    icons_dir={d.icons_dir}
+    icons_ext={d.icons_ext}
+    default_variant={d.default_variant}
+  />
+
+  <UseCases use_cases={d.use_cases} />
+
+  <InventoryGallery grids={d.inventory_grids} pack_title={d.title} />
+
+  <BuyCTA
+    variant="large"
+    price_usd={d.price_usd}
+    count={d.count}
+    total_files={d.total_files}
+    gumroad_url={d.gumroad_url}
+    github_url={d.github_url}
+    is_free={d.is_free}
+  />
+
+  <FAQ faq={d.faq} />
+
+  <RelatedPacks related={d.related} />
+</Base>

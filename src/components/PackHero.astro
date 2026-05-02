@@ -1,0 +1,93 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  hero_image: string;
+  count: number;
+  variants: string[];
+  total_files: number;
+  price_usd: number;
+  gumroad_url: string;
+  github_url?: string;
+  free_count?: number;
+  is_free?: boolean;
+}
+const {
+  title, description, hero_image, count, variants, total_files,
+  price_usd, gumroad_url, github_url, free_count, is_free = false,
+} = Astro.props;
+const price_str = price_usd.toFixed(2);
+---
+<section class="relative overflow-hidden bg-white border-b border-navy/10">
+  <!-- Aurora glow blobs (decorative, modern dribbble-style) -->
+  <div class="pointer-events-none absolute inset-0 -z-0">
+    <div class="absolute -top-32 -right-32 w-[500px] h-[500px] rounded-full opacity-20 blur-[100px]"
+         style="background: radial-gradient(circle, #F4842F 0%, transparent 70%);"></div>
+    <div class="absolute -bottom-40 -left-20 w-[400px] h-[400px] rounded-full opacity-10 blur-[120px]"
+         style="background: radial-gradient(circle, #1A2332 0%, transparent 70%);"></div>
+  </div>
+
+  <div class="relative max-w-5xl mx-auto px-6 py-12 grid lg:grid-cols-[1fr_auto] gap-10 items-center">
+    <div>
+      <div class="flex items-center gap-2 mb-3">
+        <div class="text-xs uppercase tracking-widest text-orange font-semibold">SVG Pack</div>
+        {is_free ? (
+          <span class="inline-flex items-center gap-1 px-2 py-0.5 bg-orange text-white text-xs font-bold uppercase tracking-wider rounded">
+            ★ Free pack
+          </span>
+        ) : free_count ? (
+          <a href="#free" class="inline-flex items-center gap-1 px-2 py-0.5 bg-orange/10 text-orange text-xs font-bold uppercase tracking-wider rounded hover:bg-orange/20 transition-colors">
+            ★ {free_count} icons free
+          </a>
+        ) : null}
+      </div>
+      <h1 class="text-4xl sm:text-5xl font-bold tracking-tight leading-[1.05] mb-4">
+        {title}
+      </h1>
+      <p class="text-lg text-navy/70 mb-6 max-w-2xl">{description}</p>
+
+      <div class="flex flex-wrap gap-x-6 gap-y-2 text-sm text-navy/70 mb-7">
+        <div><span class="font-semibold text-navy">{count}</span> unique icons</div>
+        <div><span class="font-semibold text-navy">{variants.length}</span> color {variants.length === 1 ? 'variant' : 'variants'}</div>
+        <div><span class="font-semibold text-navy">{total_files}</span> SVG files</div>
+        <div>Commercial license</div>
+      </div>
+
+      <div class="flex flex-wrap gap-3 items-center">
+        {is_free ? (
+          <a href={gumroad_url} class="bg-orange text-white px-7 py-3.5 rounded-lg font-semibold hover:bg-orange/90 transition-colors">
+            Get it free on Gumroad
+          </a>
+        ) : (
+          <a href={gumroad_url} class="bg-navy text-white px-7 py-3.5 rounded-lg font-semibold hover:bg-navy/90 transition-colors">
+            Get the pack — ${price_str}
+          </a>
+        )}
+        {github_url && (
+          <a href={github_url} class="border border-navy/20 px-5 py-3.5 rounded-lg font-medium hover:border-orange hover:text-orange transition-colors">
+            {is_free ? "Mirror on GitHub" : "Free preview on GitHub"}
+          </a>
+        )}
+      </div>
+      {is_free && (
+        <div class="text-xs text-navy/50 mt-3">
+          ✓ Free download · ✓ Email captured at Gumroad checkout · ✓ Commercial license
+        </div>
+      )}
+    </div>
+
+    <div class="lg:max-w-md">
+      <picture>
+        <source srcset={hero_image.replace(/\.png$/, '.webp')} type="image/webp" />
+        <img
+          src={hero_image}
+          alt={`${title} — preview cover with sample icons`}
+          class="w-full rounded-xl border border-navy/10 shadow-sm"
+          loading="eager"
+          width="1280"
+          height="720"
+        />
+      </picture>
+    </div>
+  </div>
+</section>

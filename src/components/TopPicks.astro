@@ -1,0 +1,36 @@
+---
+interface Pick { icon: string; note: string }
+interface Props {
+  picks: Pick[];
+  icons_dir: string;
+  icons_ext?: 'png' | 'svg';
+  default_variant?: string;
+}
+const { picks, icons_dir, icons_ext = 'png', default_variant } = Astro.props;
+const variant_path = default_variant ? `/${default_variant}` : '';
+---
+<section class="max-w-5xl mx-auto px-6 py-14">
+  <h2 class="text-2xl font-semibold tracking-tight mb-2">Standout icons in this pack</h2>
+  <p class="text-navy/60 mb-8 text-sm">A handful that we keep using ourselves.</p>
+
+  <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+    {picks.map(({ icon, note }) => (
+      <div class="flex gap-4 p-5 border border-navy/10 rounded-xl bg-white hover:border-orange hover:shadow-sm transition-all">
+        <div class="flex-shrink-0 w-14 h-14 bg-bg/60 rounded-lg flex items-center justify-center">
+          <img
+            src={`${icons_dir}${variant_path}/${icon}.${icons_ext}`}
+            alt={icon}
+            class="w-9 h-9"
+            loading="lazy"
+            draggable={false}
+            oncontextmenu="return false"
+          />
+        </div>
+        <div class="flex-1 min-w-0">
+          <div class="font-semibold text-navy capitalize text-sm mb-1">{icon.replace(/-/g, ' ')}</div>
+          <p class="text-navy/70 text-sm leading-snug">{note}</p>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>

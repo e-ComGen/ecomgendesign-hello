@@ -1,0 +1,92 @@
+---
+interface Props {
+  price_usd: number;
+  count: number;
+  total_files: number;
+  gumroad_url: string;
+  github_url?: string;
+  variant?: 'large' | 'inline';
+  is_free?: boolean;
+}
+const {
+  price_usd, count, total_files, gumroad_url, github_url,
+  variant = 'large', is_free = false,
+} = Astro.props;
+const price_str = price_usd.toFixed(2);
+---
+{variant === 'large' ? (
+  <section class="relative overflow-hidden bg-navy text-white">
+    <!-- Glow blobs that subtly suggest movement / energy -->
+    <div class="pointer-events-none absolute inset-0">
+      <div class="absolute top-0 left-1/4 w-[600px] h-[300px] rounded-full opacity-30 blur-[100px]"
+           style="background: radial-gradient(ellipse, #F4842F 0%, transparent 60%);"></div>
+      <div class="absolute -bottom-20 right-1/4 w-[400px] h-[250px] rounded-full opacity-20 blur-[80px]"
+           style="background: radial-gradient(ellipse, #F4842F 0%, transparent 70%);"></div>
+    </div>
+    <div class="relative max-w-3xl mx-auto px-6 py-16 text-center">
+      {is_free ? (
+        <>
+          <h2 class="text-3xl sm:text-4xl font-bold tracking-tight mb-4">
+            Get the full pack — <span class="text-orange">free</span>
+          </h2>
+          <p class="text-white/70 mb-8 text-lg">
+            All {count} icons · {total_files} SVG files · commercial license · download from Gumroad with one email
+          </p>
+          <div class="flex flex-wrap gap-3 justify-center">
+            <a href={gumroad_url} class="bg-orange text-navy px-8 py-4 rounded-lg font-bold hover:bg-orange/90 transition-colors">
+              Get it free on Gumroad
+            </a>
+            {github_url && (
+              <a href={github_url} class="border border-white/30 px-6 py-4 rounded-lg font-medium hover:border-orange hover:text-orange transition-colors">
+                Or grab on GitHub
+              </a>
+            )}
+          </div>
+          <div class="mt-5 text-xs text-white/50">
+            ✓ No payment · ✓ Email at checkout · ✓ Use in commercial products
+          </div>
+        </>
+      ) : (
+        <>
+          <h2 class="text-3xl sm:text-4xl font-bold tracking-tight mb-4">
+            Get the full pack — <span class="text-orange">${price_str}</span>
+          </h2>
+          <p class="text-white/70 mb-8 text-lg">
+            {count} icons · {total_files} SVG files · 4 color variants · commercial license · instant download
+          </p>
+          <div class="flex flex-wrap gap-3 justify-center">
+            <a href={gumroad_url} class="bg-orange text-navy px-8 py-4 rounded-lg font-bold hover:bg-orange/90 transition-colors">
+              Buy on Gumroad — ${price_str}
+            </a>
+            {github_url && (
+              <a href={github_url} class="border border-white/30 px-6 py-4 rounded-lg font-medium hover:border-orange hover:text-orange transition-colors">
+                Free preview on GitHub
+              </a>
+            )}
+          </div>
+          <div class="mt-5 text-xs text-white/50">
+            ✓ No subscription · ✓ No attribution · ✓ Use in commercial products
+          </div>
+        </>
+      )}
+    </div>
+  </section>
+) : (
+  <div class="max-w-5xl mx-auto px-6 py-8">
+    <div class="bg-white border border-navy/10 rounded-xl p-6 flex flex-wrap items-center justify-between gap-4">
+      <div>
+        <div class="font-semibold text-navy">
+          {is_free ? "Want it all?" : "Like what you see?"}
+        </div>
+        <p class="text-sm text-navy/60">
+          {is_free
+            ? `Grab all ${count} icons + variants free from Gumroad (email required).`
+            : `Get all ${count} icons + 4 color variants for $${price_str}.`}
+        </p>
+      </div>
+      <a href={gumroad_url} class={`${is_free ? "bg-orange text-white" : "bg-navy text-white"} px-6 py-3 rounded-lg font-medium hover:opacity-90 transition-opacity`}>
+        {is_free ? "Get it free" : `Get the pack — $${price_str}`}
+      </a>
+    </div>
+  </div>
+)}

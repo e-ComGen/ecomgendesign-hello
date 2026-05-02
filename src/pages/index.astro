@@ -1,0 +1,49 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="e-ComGen Design — SVG asset packs for designers and developers">
+  <section class="relative overflow-hidden max-w-5xl mx-auto px-6 pt-20 pb-16 text-center">
+    <!-- Aurora background blobs -->
+    <div class="pointer-events-none absolute inset-0 -z-10">
+      <div class="absolute top-10 left-1/2 -translate-x-1/2 w-[700px] h-[400px] rounded-full opacity-30 blur-[120px]"
+           style="background: radial-gradient(ellipse, #F4842F 0%, transparent 60%);"></div>
+      <div class="absolute -bottom-20 right-1/4 w-[400px] h-[300px] rounded-full opacity-20 blur-[100px]"
+           style="background: radial-gradient(ellipse, #1A2332 0%, transparent 70%);"></div>
+    </div>
+
+    <div class="relative inline-flex items-center gap-2 px-4 py-1.5 bg-orange/10 text-orange text-sm font-bold uppercase tracking-wider rounded-full mb-6">
+      ★ 4 icons free with every pack — no email required
+    </div>
+    <h1 class="text-5xl sm:text-6xl font-semibold tracking-tight mb-6">
+      SVG packs for designers<br/>
+      <span class="text-orange">that just work.</span>
+    </h1>
+    <p class="text-lg text-navy/70 max-w-2xl mx-auto mb-10">
+      Hand-curated SVG icons, illustrations and UI elements. Editable in Figma or code,
+      infinitely scalable, kilobytes per file. Commercial license, no attribution.
+    </p>
+    <div class="flex flex-wrap gap-3 justify-center">
+      <a href="/packs" class="bg-navy text-white px-6 py-3 rounded-lg font-medium hover:bg-navy/90 transition-colors">
+        Browse packs
+      </a>
+      <a href="https://ecomgendesign.gumroad.com" class="border border-navy/20 px-6 py-3 rounded-lg font-medium hover:border-orange hover:text-orange transition-colors">
+        Shop on Gumroad
+      </a>
+    </div>
+  </section>
+
+  <section class="max-w-5xl mx-auto px-6 py-12 grid sm:grid-cols-3 gap-8 text-center">
+    <div class="p-6">
+      <div class="text-orange text-3xl mb-2 font-semibold">SVG-first</div>
+      <p class="text-navy/70 text-sm">Vector source. Scale to billboard size. Recolor with one CSS rule.</p>
+    </div>
+    <div class="p-6">
+      <div class="text-orange text-3xl mb-2 font-semibold">Drop-in</div>
+      <p class="text-navy/70 text-sm">Figma, Webflow, React, Vue, plain HTML. Works everywhere out of the box.</p>
+    </div>
+    <div class="p-6">
+      <div class="text-orange text-3xl mb-2 font-semibold">Commercial</div>
+      <p class="text-navy/70 text-sm">Use in client work, products, ads, print. No attribution required.</p>
+    </div>
+  </section>
+</Base>

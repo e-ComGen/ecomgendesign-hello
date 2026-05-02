@@ -1,0 +1,23 @@
+---
+interface UseCase { title: string; description: string }
+interface Props { use_cases: UseCase[] }
+const { use_cases } = Astro.props;
+---
+<section class="bg-white border-y border-navy/10">
+  <div class="max-w-5xl mx-auto px-6 py-14">
+    <h2 class="text-2xl font-semibold tracking-tight mb-8">Where it shines</h2>
+    <div class="space-y-3">
+      {use_cases.map(({ title, description }) => (
+        <div class="flex gap-5 p-5 rounded-xl border border-navy/10 hover:border-orange transition-colors">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-orange/10 text-orange flex items-center justify-center font-bold text-sm">
+            ✓
+          </div>
+          <div>
+            <div class="font-semibold text-navy mb-1">{title}</div>
+            <p class="text-navy/70 text-sm leading-relaxed">{description}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
