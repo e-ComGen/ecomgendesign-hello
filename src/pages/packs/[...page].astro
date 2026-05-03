@@ -1,0 +1,88 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+
+export async function getStaticPaths({ paginate }) {
+  const packs = await getCollection('packs', ({ data }) => !data.draft);
+  const sorted = packs.sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+  );
+  // 24 packs per page (3 cols × 8 rows on desktop)
+  return paginate(sorted, { pageSize: 24 });
+}
+
+const { page } = Astro.props;
+const isFirstPage = page.currentPage === 1;
+const title = isFirstPage
+  ? 'All packs — e-ComGen Design'
+  : `All packs — page ${page.currentPage} — e-ComGen Design`;
+---
+<Base title={title} description="Browse all SVG asset packs from e-ComGen Design.">
+  <section class="max-w-5xl mx-auto px-6 py-16">
+    <h1 class="text-4xl font-semibold tracking-tight mb-3">All packs</h1>
+    <p class="text-navy/70 mb-10">
+      {page.total} SVG asset pack{page.total === 1 ? '' : 's'}, hand-curated for designers.
+      {page.lastPage > 1 && (
+        <span class="text-navy/50"> · Page {page.currentPage} of {page.lastPage}</span>
+      )}
+    </p>
+
+    {page.data.length === 0 ? (
+      <div class="border-2 border-dashed border-navy/15 rounded-xl p-12 text-center">
+        <p class="text-navy/60">No packs published yet.</p>
+      </div>
+    ) : (
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {page.data.map((pack) => (
+          <a href={`/packs/${pack.slug}`} class="group bg-white border border-navy/10 rounded-xl overflow-hidden hover:border-orange hover:shadow-md transition-all">
+            <div class="aspect-video overflow-hidden bg-bg/40">
+              <img src={pack.data.hero_image} alt={pack.data.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform" loading="lazy" decoding="async" />
+            </div>
+            <div class="p-5">
+              <div class="text-xs uppercase tracking-wider text-navy/50 mb-1.5">{pack.data.category}</div>
+              <div class="font-semibold text-navy mb-2 group-hover:text-orange transition-colors leading-snug">{pack.data.title}</div>
+              <div class="flex items-center justify-between text-sm">
+                <span class="text-navy/60">{pack.data.count} icons</span>
+                {pack.data.is_free ? (
+                  <span class="font-bold text-orange uppercase text-xs tracking-wider px-2 py-0.5 bg-orange/10 rounded">Free</span>
+                ) : (
+                  <span class="font-bold text-orange">${pack.data.price_usd.toFixed(2)}</span>
+                )}
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    )}
+
+    {page.lastPage > 1 && (
+      <nav class="mt-12 flex items-center justify-center gap-2 flex-wrap" aria-label="Pagination">
+        {page.url.prev ? (
+          <a href={page.url.prev} class="px-4 py-2 border border-navy/15 rounded-lg hover:border-orange hover:text-orange transition-colors text-sm" rel="prev">
+            ← Previous
+          </a>
+        ) : (
+          <span class="px-4 py-2 border border-navy/10 rounded-lg text-navy/30 text-sm cursor-not-allowed">← Previous</span>
+        )}
+
+        {Array.from({ length: page.lastPage }, (_, i) => i + 1).map((n) => {
+          const url = n === 1 ? '/packs' : `/packs/${n}`;
+          const isCurrent = n === page.currentPage;
+          return isCurrent ? (
+            <span class="px-3 py-2 bg-navy text-white rounded-lg font-semibold text-sm" aria-current="page">{n}</span>
+          ) : (
+            <a href={url} class="px-3 py-2 border border-navy/15 rounded-lg hover:border-orange hover:text-orange transition-colors text-sm">{n}</a>
+          );
+        })}
+
+        {page.url.next ? (
+          <a href={page.url.next} class="px-4 py-2 border border-navy/15 rounded-lg hover:border-orange hover:text-orange transition-colors text-sm" rel="next">
+            Next →
+          </a>
+        ) : (
+          <span class="px-4 py-2 border border-navy/10 rounded-lg text-navy/30 text-sm cursor-not-allowed">Next →</span>
+        )}
+      </nav>
+    )}
+  </section>
+</Base>
