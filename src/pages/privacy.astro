@@ -1,0 +1,63 @@
+---
+import Base from '../layouts/Base.astro';
+
+const today = new Date().toISOString().split('T')[0];
+---
+<Base title="Privacy Policy — e-ComGen Design" description="Privacy policy for e-comgen.site and e-ComGen Design products.">
+  <article class="max-w-3xl mx-auto px-6 py-16 prose prose-navy text-navy/80 leading-relaxed">
+    <h1>Privacy Policy</h1>
+    <p class="text-sm text-navy/50">Last updated: {today}</p>
+
+    <h2>Who we are</h2>
+    <p>
+      e-ComGen Design ("we", "us") operates the website <a href="https://e-comgen.site">e-comgen.site</a>
+      and sells digital design assets (SVG icon packs) through Gumroad
+      (<a href="https://ecomgendesign.gumroad.com">ecomgendesign.gumroad.com</a>).
+      Contact: <code>hello@e-comgen.site</code>
+    </p>
+
+    <h2>What data we collect</h2>
+    <p>This website is a static site (HTML, CSS, images). We do <strong>not</strong> collect personal data directly:</p>
+    <ul>
+      <li>No login or account system</li>
+      <li>No tracking cookies set by us</li>
+      <li>No analytics scripts that identify individuals</li>
+      <li>No newsletter form on this site (subscribe happens on Gumroad)</li>
+    </ul>
+
+    <h2>What our hosting provider sees</h2>
+    <p>
+      The site is hosted on Cloudflare. Cloudflare logs basic request data (IP address, user agent, referrer)
+      for security and performance reasons. See
+      <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">Cloudflare's privacy policy</a>.
+    </p>
+
+    <h2>Third-party services we link to</h2>
+    <ul>
+      <li><strong>Gumroad</strong> — handles all purchases. When you click "Buy" or "Get free" you go to gumroad.com. They collect your email and (for paid orders) payment details under their own
+        <a href="https://gumroad.com/privacy" target="_blank" rel="noopener">privacy policy</a>.</li>
+      <li><strong>GitHub</strong> — hosts our free icon previews. Visiting our GitHub repos is governed by
+        <a href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement" target="_blank" rel="noopener">GitHub's privacy statement</a>.</li>
+      <li><strong>Pinterest</strong> — we use Pinterest's API to publish pins for our products. We do not collect Pinterest user data.</li>
+    </ul>
+
+    <h2>Cookies</h2>
+    <p>
+      This site does not set its own cookies. Cloudflare may set a security cookie (<code>__cf_bm</code>) to
+      detect bots. This expires after 30 minutes and contains no personal data.
+    </p>
+
+    <h2>Your rights</h2>
+    <p>
+      Since we don't collect personal data on this website, there's no personal data to access, correct, or delete.
+      For purchases made through Gumroad, see Gumroad's privacy controls. To contact us about anything,
+      email <code>hello@e-comgen.site</code>.
+    </p>
+
+    <h2>Changes to this policy</h2>
+    <p>
+      We'll update the date at the top of this page when this policy changes. Material changes will be
+      announced on the homepage.
+    </p>
+  </article>
+</Base>

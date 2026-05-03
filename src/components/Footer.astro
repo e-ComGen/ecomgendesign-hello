@@ -1,14 +1,42 @@
 ---
 const year = new Date().getFullYear();
 ---
-<footer class="border-t border-navy/10 mt-16">
-  <div class="max-w-5xl mx-auto px-6 py-8 flex flex-col sm:flex-row justify-between items-center gap-3 text-sm text-navy/60">
+<footer class="border-t border-navy/10 mt-16 bg-white">
+  <div class="max-w-5xl mx-auto px-6 py-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-8 text-sm">
     <div>
-      © {year} <span class="font-medium">e-ComGen<span class="text-orange"> Design</span></span>. SVG packs for designers.
+      <div class="font-bold text-navy mb-3">e-ComGen<span class="text-orange"> Design</span></div>
+      <p class="text-navy/60 leading-relaxed">SVG icon packs for designers and developers. Drop into Figma, Webflow, or code.</p>
     </div>
-    <div class="flex gap-4">
-      <a href="https://ecomgendesign.gumroad.com" class="hover:text-orange">Gumroad</a>
-      <a href="https://github.com/e-ComGen" class="hover:text-orange">GitHub</a>
+
+    <div>
+      <div class="font-semibold text-navy mb-3">Browse</div>
+      <ul class="space-y-1.5 text-navy/70">
+        <li><a href="/packs" class="hover:text-orange">All packs</a></li>
+        <li><a href="/about" class="hover:text-orange">About</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <div class="font-semibold text-navy mb-3">Where to buy</div>
+      <ul class="space-y-1.5 text-navy/70">
+        <li><a href="https://ecomgendesign.gumroad.com" class="hover:text-orange">Gumroad shop</a></li>
+        <li><a href="https://github.com/e-ComGen" class="hover:text-orange">GitHub previews</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <div class="font-semibold text-navy mb-3">Legal</div>
+      <ul class="space-y-1.5 text-navy/70">
+        <li><a href="/terms" class="hover:text-orange">Terms & License</a></li>
+        <li><a href="/privacy" class="hover:text-orange">Privacy</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="border-t border-navy/10">
+    <div class="max-w-5xl mx-auto px-6 py-4 flex flex-col sm:flex-row justify-between items-center gap-2 text-xs text-navy/50">
+      <div>© {year} e-ComGen Design</div>
+      <div>SVG · Vector · Commercial license</div>
     </div>
   </div>
 </footer>

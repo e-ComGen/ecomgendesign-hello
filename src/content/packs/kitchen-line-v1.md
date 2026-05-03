@@ -4,7 +4,7 @@ description: Download 11 free SVG icons for culinary apps and blogs. Use them in
 category: food
 price_usd: 0
 is_free: true
-gumroad_url: https://ecomgendesign.gumroad.com/l/kitchen-line-v1
+gumroad_url: https://buy.polar.sh/polar_cl_Jfl6QTrz177o4Zdn3McilzIwYZHZo0zEQnxPo1QCRQy
 github_url: https://github.com/e-ComGen/kitchen-line-v1-preview
 count: 11
 variants:

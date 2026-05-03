@@ -4,7 +4,7 @@ description: Download 29 unique vegetable icons in 4 styles. Ready for Figma and
 category: food
 price_usd: 4.99
 is_free: false
-gumroad_url: https://ecomgendesign.gumroad.com/l/vegetable-icons
+gumroad_url: https://buy.polar.sh/polar_cl_gJulHkrmjeWeRMNFcwGdwhdp9qShgYOlDzUm61XsOxR
 github_url: https://github.com/e-ComGen/vegetable-icons-pack-preview
 count: 29
 variants:

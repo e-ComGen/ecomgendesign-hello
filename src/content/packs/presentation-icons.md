@@ -4,7 +4,7 @@ description: 45 presentation icons in 4 color variants. Enhance presentations wi
 category: presentation
 price_usd: 4.99
 is_free: false
-gumroad_url: https://ecomgendesign.gumroad.com/l/presentation-icons
+gumroad_url: https://buy.polar.sh/polar_cl_uuwTZZS84Px7z43gYCuRRR1mZwDr73YiWecNF0snbo8
 github_url: https://github.com/e-ComGen/presentation-icons-preview
 count: 45
 variants:

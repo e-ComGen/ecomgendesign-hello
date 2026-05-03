@@ -1,0 +1,73 @@
+---
+import Base from '../layouts/Base.astro';
+
+const today = new Date().toISOString().split('T')[0];
+---
+<Base title="Terms of Service — e-ComGen Design" description="Terms of service and license for e-comgen.site and e-ComGen Design SVG icon packs.">
+  <article class="max-w-3xl mx-auto px-6 py-16 prose prose-navy text-navy/80 leading-relaxed">
+    <h1>Terms of Service</h1>
+    <p class="text-sm text-navy/50">Last updated: {today}</p>
+
+    <h2>What we sell</h2>
+    <p>
+      e-ComGen Design produces and sells digital design assets — primarily SVG icon packs — through our
+      Gumroad shop at <a href="https://ecomgendesign.gumroad.com">ecomgendesign.gumroad.com</a> and
+      previews them on this website (<a href="https://e-comgen.site">e-comgen.site</a>).
+    </p>
+
+    <h2>Purchases</h2>
+    <p>
+      All purchases happen on Gumroad. Their
+      <a href="https://gumroad.com/terms" target="_blank" rel="noopener">terms of service</a>
+      apply to the transaction (payment, refunds, dispute resolution). We don't process payments directly.
+    </p>
+
+    <h2>License — what you can do with our icon packs</h2>
+    <p>Every paid pack and free sampler is covered by the same commercial license:</p>
+    <ul>
+      <li>Use in <strong>personal projects</strong> (websites, apps, prints, decks)</li>
+      <li>Use in <strong>commercial work</strong> for clients (freelance, agency)</li>
+      <li>Use in <strong>commercial products</strong> you sell (apps, SaaS, marketing materials, packaging)</li>
+      <li>Modify, recolor, combine with other assets</li>
+      <li><strong>No attribution required</strong></li>
+    </ul>
+
+    <h2>License — what you cannot do</h2>
+    <ul>
+      <li>Re-sell the pack as-is or as part of another icon set</li>
+      <li>Distribute the individual SVG files as standalone free assets on other sites</li>
+      <li>Claim authorship of the original artwork</li>
+    </ul>
+
+    <h2>Free icons</h2>
+    <p>
+      Free icons given away on this site (4 free per paid pack, or the entire pack for free packs) follow
+      the same commercial license. The only difference is price.
+    </p>
+
+    <h2>Refunds</h2>
+    <p>
+      Refunds are handled by Gumroad under their refund policy. Email
+      <code>hello@e-comgen.site</code> if you have an issue we can resolve directly first.
+    </p>
+
+    <h2>Service availability</h2>
+    <p>
+      This site is hosted on Cloudflare's CDN. We don't guarantee 100% uptime but uptime is typically over 99.9%.
+      If the site is down, the Gumroad shop usually still works at
+      <a href="https://ecomgendesign.gumroad.com">ecomgendesign.gumroad.com</a>.
+    </p>
+
+    <h2>AI disclosure</h2>
+    <p>
+      Our icons are produced with AI-assisted workflows and then hand-curated for quality, consistency, and
+      visual coherence. We mention this transparently because some platforms require it.
+    </p>
+
+    <h2>Changes</h2>
+    <p>
+      We may update these terms. Material changes will be announced on the homepage. Continued use of the
+      site means acceptance of the updated terms.
+    </p>
+  </article>
+</Base>
