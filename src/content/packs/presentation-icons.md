@@ -4,7 +4,7 @@ description: 45 presentation icons in 4 color variants. Enhance presentations wi
 category: presentation
 price_usd: 5
 is_free: false
-gumroad_url: https://app.lava.top/products/fa17e2ed-f320-4733-b903-0ab31eaa5918
+gumroad_url: https://app.lava.top/products/21b869a8-f713-4742-a4a0-dd0d1a805d67
 github_url: https://github.com/e-ComGen/presentation-icons-preview
 count: 45
 variants:

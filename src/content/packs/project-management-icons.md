@@ -4,7 +4,7 @@ description: 36 project management SVG icons in mono-navy for Figma dashboards a
 category: productivity
 price_usd: 5
 is_free: false
-gumroad_url: https://app.lava.top/products/cbcc704e-9cf8-4308-80b1-17baffc75ac7
+gumroad_url: https://app.lava.top/products/9f2e8b52-afa4-40d1-8552-bee95a18266e
 github_url: https://github.com/e-ComGen/project-management-icons-preview
 count: 36
 variants:

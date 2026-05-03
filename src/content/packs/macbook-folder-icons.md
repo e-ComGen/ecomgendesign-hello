@@ -4,7 +4,7 @@ description: 40 MacBook folder icons pack with navy orange icons for modern desi
 category: ui
 price_usd: 5
 is_free: false
-gumroad_url: https://app.lava.top/products/47fc3270-9401-4829-9ab8-15671e4ec82b
+gumroad_url: https://app.lava.top/products/bf8d18f2-d0c4-4052-a020-242fbdf5a156
 github_url: https://github.com/e-ComGen/macbook-folder-icons-preview
 count: 40
 variants:
