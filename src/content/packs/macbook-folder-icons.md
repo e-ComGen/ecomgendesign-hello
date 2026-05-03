@@ -2,9 +2,9 @@
 title: 40 MacBook Folder Icons — Flat Icons Set for Designers
 description: 40 MacBook folder icons pack with navy orange icons for modern design. Enhance your macOS workspace with geometric, vector icons. $4.99.
 category: ui
-price_usd: 4.99
+price_usd: 5
 is_free: false
-gumroad_url: https://buy.polar.sh/polar_cl_14D1mr5gfG03v0Obachka2vZQ7u9oyBUOD2AQ3Lju2C
+gumroad_url: https://app.lava.top/products/47fc3270-9401-4829-9ab8-15671e4ec82b
 github_url: https://github.com/e-ComGen/macbook-folder-icons-preview
 count: 40
 variants:

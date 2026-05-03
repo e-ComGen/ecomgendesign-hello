@@ -2,9 +2,9 @@
 title: 45 Presentation Icons — SVG Pack for PowerPoint & Keynote
 description: 45 presentation icons in 4 color variants. Enhance presentations with slide deck icons, speaker visuals, and feedback icons. $4.99 for 180 SVGs.
 category: presentation
-price_usd: 4.99
+price_usd: 5
 is_free: false
-gumroad_url: https://buy.polar.sh/polar_cl_uuwTZZS84Px7z43gYCuRRR1mZwDr73YiWecNF0snbo8
+gumroad_url: https://app.lava.top/products/fa17e2ed-f320-4733-b903-0ab31eaa5918
 github_url: https://github.com/e-ComGen/presentation-icons-preview
 count: 45
 variants:
