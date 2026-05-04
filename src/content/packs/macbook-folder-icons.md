@@ -1,9 +1,9 @@
 ---
-title: 40 MacBook Folder Icons — Flat Icons Set for Designers
-description: 40 MacBook folder icons pack with navy orange icons for modern design. Enhance your macOS workspace with geometric, vector icons. $4.99.
+title: Free 40 MacBook Folder SVG Icons for Designers - Modern & Flat
+description: Get 40 free MacBook folder SVG icons for your design projects. Perfect for Figma, enhance your workspace with modern UI tools.
 category: ui
-price_usd: 5
-is_free: false
+price_usd: 0
+is_free: true
 gumroad_url: https://app.lava.top/products/bf8d18f2-d0c4-4052-a020-242fbdf5a156
 github_url: https://github.com/e-ComGen/macbook-folder-icons-preview
 count: 40
@@ -106,8 +106,7 @@ icons:
   label: Version Control History
 - name: wireframe-sketches
   label: Wireframe Sketches
-hook: Ever lose track of files because all your folders look the same? Meet the icons that change that. Find what you need at a glance with style and precision, and bring order to your digital chaos on
-  MacBook.
+hook: Download this free icon pack now and elevate your design projects! These icons are attribution-free for commercial use.
 audience:
 - role: UI/UX designers
   pain: Folders in Figma often appear identical, making file management a chore. These icons provide visual clarity, letting you spot the right folder instantly, without extra clicks or guesswork.
